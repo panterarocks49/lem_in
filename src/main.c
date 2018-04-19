@@ -17,7 +17,6 @@ int		main(void)
 	t_world	w;
 
 	parse_input(&w);
-	set_unvisited(&w);
-	// place_ants(&w);
+	place_ants(&w);
 	return (0);
 }

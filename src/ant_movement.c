@@ -48,7 +48,7 @@ void	place_ants(t_world *w)
 	{
 		moved = 0;
 		i = w->room_count - 1;
-		while (i-- >= 0)
+		while (i >= 0)
 		{
 			if (w->rooms[i].type != END && w->rooms[i].ants)
 			{
@@ -60,6 +60,7 @@ void	place_ants(t_world *w)
 					moved = 1;
 				}
 			}
+			i--;
 		}
 	}
 
