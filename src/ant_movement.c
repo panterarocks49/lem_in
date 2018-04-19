@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 01:41:41 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/19 02:56:56 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/19 04:39:16 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int		select_ant_placement(t_world *w, int place_from)
 		// 	return ;
 		// 	//need to add an else that checks if all paths are longer than the ant count then use the shortest, maybe in the moving loop though
 		// }
-		// else
-		// {
-			room = find_shortest_path_room(w, place_from);
-			ft_printf("Move ant from %s to %s\n", w->rooms[place_from].name, w->rooms[room].name);
+		room = find_shortest_path_room(w, place_from);
+		// ft_printf("%d\n", room);
+		if (room >= w->room_count)
 			return (room);
-		// }
+		ft_printf("Move ant from %s to %s\n", w->rooms[place_from].name, w->rooms[room].name);
+		return (room);
 	}
 	return (-1);
 }
@@ -52,16 +52,17 @@ void	place_ants(t_world *w)
 		{
 			if (w->rooms[i].type != END && w->rooms[i].ants)
 			{
-				w->rooms[i].ants -= 1;
 				room = select_ant_placement(w, i);
 				if (room != -1)
 				{
-					w->rooms[room].ants += 1;
+					w->rooms[i].ants--;
+					w->rooms[room].ants++;
+					i++;
 					moved = 1;
 				}
 			}
 			i--;
 		}
+		ft_printf("\n");
 	}
-
 }

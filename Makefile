@@ -15,7 +15,7 @@ RM = /bin/rm -f
 CFLAGS = -Wall -Wextra -Werror
 
 # lem_in
-FILES = main algo pathing ant_movement
+FILES = main util error parse_input parse_rooms parse_links algo pathing ant_movement
 MAIN_INC = -I ./include/
 SRC_DIR = ./src/
 CFILES = $(patsubst %, $(SRC_DIR)%.c, $(FILES))

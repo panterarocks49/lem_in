@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/18 19:27:42 by jbrown            #+#    #+#             */
-/*   Updated: 2018/04/19 04:28:13 by nobrien          ###   ########.fr       */
+/*   Created: 2018/04/18 22:09:38 by jbrown            #+#    #+#             */
+/*   Updated: 2018/04/19 03:32:10 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
 
-int		main(void)
+void	error(char *str)
 {
-	t_world	w;
-
-	parse_input(&w);
-	set_unvisited(&w);
-	// ft_printf("%d\n", find_shortest_path_room(&w, 3));
-	place_ants(&w);
-	// ft_printf("%d\n", bfs_from(&w, 5));
-	return (0);
+	ft_printf("%s\n", str);
+	exit(EXIT_FAILURE);
 }

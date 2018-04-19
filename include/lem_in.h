@@ -12,7 +12,9 @@
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
+# include <stdlib.h>
 # include <libft.h>
+
 # define STANDARD 0
 # define START 1
 # define END 2
@@ -25,8 +27,7 @@ typedef struct	s_room
 	char	*name;
 	int		ants;
 	int		type;
-	int		links[2];
-	// int		*links;
+	int		*links;
 	int		link_count;
 	int		visited;
 	int		distance;
@@ -40,12 +41,27 @@ typedef struct	s_ant
 
 typedef struct	s_world
 {
-	// t_room	*rooms;
-	t_room	rooms[5];
-	int		room_start; //index of rooms
+	t_room	*rooms;
+	int		room_start;
+	int		room_end;
 	int		room_count;
 	t_ant	*ants;
+	int		ant_count;
 }				t_world;
+
+void			parse_input(t_world *world);
+
+int				find_room(t_world *world, char *name);
+char			*parse_name(char *line);
+void			parse_rooms(t_world *world);
+
+void			parse_links(t_world *world, char *line);
+
+void			*ft_realloc(void *ptr, size_t old_size, size_t new_size);
+int				lemin_gnl(char **line);
+
+void			error(char *str);
+
 
 int		bfs(t_world *w);
 int		bfs_from(t_world *w, int start);
