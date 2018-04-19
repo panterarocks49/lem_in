@@ -60,6 +60,7 @@ static void	add_room(t_world *world, char *name, int type)
 		room_count, sizeof(t_room) * (room_count + 1))))
 		error("Malloc Failure ;(");
 	world->rooms[room_count].name = name;
+	world->rooms[room_count].visited = 0;
 	world->rooms[room_count].ants = 0;
 	world->rooms[room_count].type = type;
 	world->rooms[room_count].links = NULL;

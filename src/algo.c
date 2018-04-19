@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 21:10:29 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/19 04:04:35 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/19 04:41:58 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int		bfs_from(t_world *w, int start)
 		{
 			distance = w->rooms[temp_vertex].distance; //get distance of current vertex
 			// ft_printf("%s, distance: %d\n", w->rooms[unvisited_vertex].name, distance + 1); //display that we're now going to visit this vertex (by adding to queue)
-			// ft_printf("%d, distance: %d\n", unvisited_vertex, distance + 1); //display that we're now going to visit this vertex (by adding to queue)
 			insert(unvisited_vertex, queue, &rear, &queue_item_count); //add unvisited vertex to queue
 			w->rooms[unvisited_vertex].visited = 1; //set it as visited, since added to queue
 			if (w->rooms[unvisited_vertex].type == END)
