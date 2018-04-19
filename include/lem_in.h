@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrown <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/18 19:26:47 by jbrown            #+#    #+#             */
-/*   Updated: 2018/04/18 20:02:35 by jbrown           ###   ########.fr       */
+/*   Created: 2018/04/18 21:21:35 by nobrien           #+#    #+#             */
+/*   Updated: 2018/04/19 02:51:08 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,42 @@
 # define END 2
 // # define SNORLAX 3
 // # define LAVA 4
+# define MAX 1000//temp num, rooms count?
 
 typedef struct	s_room
 {
 	char	*name;
-	int		number;
 	int		ants;
 	int		type;
-	int		*links;
+	int		links[2];
+	// int		*links;
+	int		link_count;
+	int		visited;
+	int		distance;
 }				t_room;
-
-typedef struct	s_world
-{
-	t_room	*rooms;
-	int		start_idx;
-}				t_world;
 
 typedef struct	s_ant
 {
-	char	*location;
-	int		number;
-	int		*path
+	int		room_index;
+	int		*path;
 }				t_ant;
+
+typedef struct	s_world
+{
+	// t_room	*rooms;
+	t_room	rooms[5];
+	int		room_start; //index of rooms
+	int		room_count;
+	t_ant	*ants;
+}				t_world;
+
+int		bfs(t_world *w);
+int		bfs_from(t_world *w, int start);
+void	set_unvisited(t_world *w);
+void	init_ants(t_world *w);
+int		get_shortest_path_from(t_world *w, int path_from);
+int		find_shortest_path_room(t_world *w, int path_from);
+int		select_ant_placement(t_world *w, int place_from);
+void	place_ants(t_world *w);
 
 #endif

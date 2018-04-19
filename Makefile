@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jbrown <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 19:25:11 by jbrown            #+#    #+#              #
-#    Updated: 2018/04/18 20:37:36 by jbrown           ###   ########.fr        #
+#    Updated: 2018/04/19 01:41:56 by nobrien          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ RM = /bin/rm -f
 CFLAGS = -Wall -Wextra -Werror
 
 # lem_in
-FILES = main
+FILES = main algo pathing ant_movement
 MAIN_INC = -I ./include/
 SRC_DIR = ./src/
 CFILES = $(patsubst %, $(SRC_DIR)%.c, $(FILES))
