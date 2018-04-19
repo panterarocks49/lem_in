@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 00:49:04 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/19 05:03:16 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/19 06:23:21 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@ int		find_shortest_path_room(t_world *w, int path_from)
 	int distance;
 
 	i = -1;
-	min = 10000;//should set to max int
+	min = 2147483647;
 	while (++i < w->rooms[path_from].link_count)
 	{
-		//TODO: add dodge for rooms with ants?
-		if (w->rooms[w->rooms[path_from].links[i]].type != END && w->rooms[w->rooms[path_from].links[i]].ants)
+		if (w->rooms[w->rooms[path_from].links[i]].type != END
+			&& w->rooms[w->rooms[path_from].links[i]].ants)
 			continue ;
-		if ((distance = (get_shortest_path_from(w, w->rooms[path_from].links[i]))) < min)
+		if ((distance = (get_shortest_path_from(w,
+			w->rooms[path_from].links[i]))) < min)
 		{
 			min = distance;
 			best_room = w->rooms[path_from].links[i];

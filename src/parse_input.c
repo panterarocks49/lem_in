@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrown <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 22:09:12 by jbrown            #+#    #+#             */
-/*   Updated: 2018/04/18 22:09:32 by jbrown           ###   ########.fr       */
+/*   Updated: 2018/04/19 06:25:41 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	set_ants(t_world *world)
 
 void		print_room(t_world *world, int i)
 {
-	t_room *room;
+	t_room	*room;
 	int		j;
 
 	j = 0;
@@ -83,7 +83,6 @@ void		parse_input(t_world *world)
 	set_world(world);
 	parse_ants(world);
 	parse_rooms(world);
-	//print_world(world);
 	set_ants(world);
 	ft_printf("\n");
 }
