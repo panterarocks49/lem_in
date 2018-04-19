@@ -6,11 +6,11 @@
 #    By: jbrown <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 19:25:11 by jbrown            #+#    #+#              #
-#    Updated: 2018/04/18 19:52:49 by jbrown           ###   ########.fr        #
+#    Updated: 2018/04/18 20:37:36 by jbrown           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = lem_in
+NAME = lem-in
 RM = /bin/rm -f
 CFLAGS = -Wall -Wextra -Werror
 
