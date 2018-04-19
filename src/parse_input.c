@@ -76,6 +76,7 @@ void		print_world(t_world *world)
 	int		i;
 
 	i = -1;
+	ft_printf("ROOM COUNT: %d\n", world->room_count);
 	while (++i < world->room_count)
 		print_room(world, i);
 }

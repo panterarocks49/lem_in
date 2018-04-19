@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrown <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/18 19:26:47 by jbrown            #+#    #+#             */
-/*   Updated: 2018/04/18 20:02:35 by jbrown           ###   ########.fr       */
+/*   Created: 2018/04/18 21:21:35 by nobrien           #+#    #+#             */
+/*   Updated: 2018/04/19 02:51:08 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define END 2
 // # define SNORLAX 3
 // # define LAVA 4
+# define MAX 1000//temp num, rooms count?
 
 typedef struct	s_room
 {
@@ -28,6 +29,8 @@ typedef struct	s_room
 	int		type;
 	int		*links;
 	int		link_count;
+	int		visited;
+	int		distance;
 }				t_room;
 
 typedef struct	s_ant
@@ -58,5 +61,15 @@ void			*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 int				lemin_gnl(char **line);
 
 void			error(char *str);
+
+
+int		bfs(t_world *w);
+int		bfs_from(t_world *w, int start);
+void	set_unvisited(t_world *w);
+void	init_ants(t_world *w);
+int		get_shortest_path_from(t_world *w, int path_from);
+int		find_shortest_path_room(t_world *w, int path_from);
+int		select_ant_placement(t_world *w, int place_from);
+void	place_ants(t_world *w);
 
 #endif

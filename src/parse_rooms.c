@@ -59,15 +59,18 @@ static void	add_room(t_world *world, char *name, int type)
 	if (!(world->rooms = (t_room *)ft_realloc(world->rooms, sizeof(t_room) *
 		room_count, sizeof(t_room) * (room_count + 1))))
 		error("Malloc Failure ;(");
-	if (type == START)
-		world->room_start = room_count;
-	else if (type == END)
-		world->room_end = room_count;
 	world->rooms[room_count].name = name;
 	world->rooms[room_count].ants = 0;
 	world->rooms[room_count].type = type;
 	world->rooms[room_count].links = NULL;
 	world->rooms[room_count].link_count = 0;
+	if (type == START)
+	{
+		world->rooms[room_count].ants = world->ant_count;
+		world->room_start = room_count;
+	}
+	else if (type == END)
+		world->room_end = room_count;
 	world->room_count++;
 }
 

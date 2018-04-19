@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrown <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 19:27:42 by jbrown            #+#    #+#             */
-/*   Updated: 2018/04/18 20:03:02 by jbrown           ###   ########.fr       */
+/*   Updated: 2018/04/19 03:07:45 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int		main(void)
 {
-	t_world	world;
+	t_world	w;
 
-	parse_input(&world);
+	parse_input(&w);
+	set_unvisited(&w);
+	// place_ants(&w);
 	return (0);
 }
