@@ -17,6 +17,9 @@ int		main(void)
 	t_world	w;
 
 	parse_input(&w);
-	place_ants(&w);
+	// place_ants(&w);
+	ft_printf("%d\n", bfs_from(&w, 4));
+	set_unvisited(&w);
+	ft_printf("%d\n", bfs_from(&w, 6));
 	return (0);
 }

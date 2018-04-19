@@ -51,7 +51,7 @@ int		get_adj_unvisited_vertex(t_world *w, int vertex_index)
 	i = 0;
 	while (i < w->rooms[vertex_index].link_count)
 	{
-		if (w->rooms[vertex_index].links[i] && !w->rooms[w->rooms[vertex_index].links[i]].visited)
+		if (!w->rooms[w->rooms[vertex_index].links[i]].visited)
 			return (w->rooms[vertex_index].links[i]);
 		i++;
 	}
@@ -75,15 +75,15 @@ int		bfs_from(t_world *w, int start)
 	unvisited_vertex = 0;
 	w->rooms[start].visited = 1; //set first room as visited
 	w->rooms[start].distance = 0; //set distance to first room to 0
-	// ft_printf("%s, distance: %d\n", w->rooms[w->room_start].name, w->rooms[w->room_start].distance); //print the name of the first room
-	insert(w->room_start, queue, &rear, &queue_item_count); //add the first room to the queue
+	ft_printf("%s, distance: %d\n", w->rooms[start].name, w->rooms[start].distance); //print the name of the first room
+	insert(start, queue, &rear, &queue_item_count); //add the first room to the queue
 	while (!is_queue_empty(queue_item_count)) //if there is nothing in queue, then there can be no adjacent rooms to search
 	{
 		temp_vertex = remove_data(&queue_item_count, queue, &front); //set the first item in the queue to the next one to search
 		while ((unvisited_vertex = get_adj_unvisited_vertex(w, temp_vertex)) != -1) //if -1, temp vertex has no linked unvisited vertex
 		{
 			distance = w->rooms[temp_vertex].distance; //get distance of current vertex
-			// ft_printf("%s, distance: %d\n", w->rooms[unvisited_vertex].name, distance + 1); //display that we're now going to visit this vertex (by adding to queue)
+			ft_printf("%s, distance: %d\n", w->rooms[unvisited_vertex].name, distance + 1); //display that we're now going to visit this vertex (by adding to queue)
 			insert(unvisited_vertex, queue, &rear, &queue_item_count); //add unvisited vertex to queue
 			w->rooms[unvisited_vertex].visited = 1; //set it as visited, since added to queue
 			if (w->rooms[unvisited_vertex].type == END)

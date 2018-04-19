@@ -52,10 +52,10 @@ void	place_ants(t_world *w)
 		{
 			if (w->rooms[i].type != END && w->rooms[i].ants)
 			{
-				w->rooms[i].ants -= 1;
 				room = select_ant_placement(w, i);
 				if (room != -1)
 				{
+					w->rooms[i].ants -= 1;
 					w->rooms[room].ants += 1;
 					moved = 1;
 				}
