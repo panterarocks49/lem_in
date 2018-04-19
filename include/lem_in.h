@@ -36,7 +36,7 @@ typedef struct	s_room
 typedef struct	s_ant
 {
 	int		room_index;
-	int		*path;
+	int		moved;
 }				t_ant;
 
 typedef struct	s_world

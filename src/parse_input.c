@@ -43,7 +43,7 @@ static void	set_ants(t_world *world)
 	while (++i < world->ant_count)
 	{
 		world->ants[i].room_index = world->room_start;
-		world->ants[i].path = NULL;
+		world->ants[i].moved = 0;
 	}
 }
 

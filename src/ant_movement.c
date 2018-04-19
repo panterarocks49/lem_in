@@ -28,7 +28,7 @@ int		select_ant_placement(t_world *w, int place_from)
 		// 	//need to add an else that checks if all paths are longer than the ant count then use the shortest, maybe in the moving loop though
 		// }
 		room = find_shortest_path_room(w, place_from);
-		// ft_printf("%d\n", room);
+		ft_printf("%d\n", room);
 		if (room >= w->room_count)
 			return (room);
 		ft_printf("Move ant from %s to %s\n", w->rooms[place_from].name, w->rooms[room].name);
@@ -37,32 +37,56 @@ int		select_ant_placement(t_world *w, int place_from)
 	return (-1);
 }
 
+void	reset_ants(t_world *w)
+{
+	int	i;
+
+	i = -1;
+	while (++i < w->ant_count)
+		w->ants[i++].moved = 0;
+}
+
 void	place_ants(t_world *w)
 {
 	int i;
-	int moved;
+	int j;
 	int room;
 
-	moved = 1;
-	while (moved)
+	j = 0;
+	while (j++ < 10)//w->rooms[w->room_end].ants != w->ant_count)
 	{
-		moved = 0;
-		i = w->room_count - 1;
-		while (i >= 0)
+		i = -1;
+		while (++i < w->ant_count)
 		{
-			if (w->rooms[i].type != END && w->rooms[i].ants)
+			if (!w->ants[i].moved && w->ants[i].room_index != w->room_end && w->rooms[w->ants[i].room_index].ants)
 			{
-				room = select_ant_placement(w, i);
-				if (room != -1)
+				room = select_ant_placement(w, w->ants[i].room_index);
+				if (room > -1 && room < w->room_count)
 				{
-					w->rooms[i].ants--;
+					w->rooms[w->ants[i].room_index].ants--;
 					w->rooms[room].ants++;
-					i++;
-					moved = 1;
+					w->ants[i].room_index = room;
+					w->ants[i].moved = 1;
+					i = -1;
 				}
 			}
-			i--;
 		}
+		reset_ants(w);
+		// i = w->room_count - 1;
+		// while (i >= 0)
+		// {
+		// 	if (w->rooms[i].type != END && w->rooms[i].ants)
+		// 	{
+		// 		room = select_ant_placement(w, i);
+		// 		if (room != -1)
+		// 		{
+		// 			w->rooms[i].ants--;
+		// 			w->rooms[room].ants++;
+		// 			i++;
+		// 		}
+		// 	}
+		// 	i--;
+		// }
 		ft_printf("\n");
 	}
 }
