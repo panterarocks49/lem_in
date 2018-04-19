@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 00:49:04 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/19 04:27:57 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/19 05:03:16 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,6 @@ void	set_unvisited(t_world *w)
 	i = -1;
 	while (++i < w->room_count)
 		w->rooms[i].visited = 0;
-}
-
-void	init_ants(t_world *w)
-{
-	int i;
-
-	i = -1;
-	while (++i < w->room_count)
-		w->rooms[i].ants = 0;
 }
 
 int		get_shortest_path_from(t_world *w, int path_from)

@@ -41,10 +41,7 @@ static void	set_ants(t_world *world)
 
 	i = -1;
 	while (++i < world->ant_count)
-	{
 		world->ants[i].room_index = world->room_start;
-		world->ants[i].moved = 0;
-	}
 }
 
 void		print_room(t_world *world, int i)
@@ -86,6 +83,7 @@ void		parse_input(t_world *world)
 	set_world(world);
 	parse_ants(world);
 	parse_rooms(world);
-	print_world(world);
+	//print_world(world);
 	set_ants(world);
+	ft_printf("\n");
 }

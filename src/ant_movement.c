@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 01:41:41 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/19 04:41:18 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/19 05:20:57 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,65 +28,58 @@ int		select_ant_placement(t_world *w, int place_from)
 		// 	//need to add an else that checks if all paths are longer than the ant count then use the shortest, maybe in the moving loop though
 		// }
 		room = find_shortest_path_room(w, place_from);
-		ft_printf("%d\n", room);
+		//ft_printf("%d\n", room);
 		if (room >= w->room_count)
-			return (room);
-		ft_printf("Move ant from %s to %s\n", w->rooms[place_from].name, w->rooms[room].name);
+			return (-1);
+		// ft_printf("%d\n", room);
 		return (room);
 	}
 	return (-1);
 }
 
-void	reset_ants(t_world *w)
+int		find_ant(t_world *w, int room)
 {
-	int	i;
+	int i;
 
 	i = -1;
 	while (++i < w->ant_count)
-		w->ants[i++].moved = 0;
+	{
+		if (w->ants[i].room_index == room)
+			return (i);
+	}
+	return (-1);
 }
 
-void	place_ants(t_world *w)
+void    place_ants(t_world *w)
 {
-	int i;
-	int j;
-	int room;
+    int i;
+    int	ant;
+    int moved;
+    int room;
 
-	j = 0;
-	while (j++ < 10)//w->rooms[w->room_end].ants != w->ant_count)
-	{
-		i = -1;
-		while (++i < w->ant_count)
-		{
-			if (!w->ants[i].moved && w->ants[i].room_index != w->room_end && w->rooms[w->ants[i].room_index].ants)
-			{
-				room = select_ant_placement(w, w->ants[i].room_index);
-				if (room > -1 && room < w->room_count)
-				{
-					w->rooms[w->ants[i].room_index].ants--;
-					w->rooms[room].ants++;
-					w->ants[i].room_index = room;
-					w->ants[i].moved = 1;
-					i = -1;
-				}
-			}
-		}
-		reset_ants(w);
-		// i = w->room_count - 1;
-		// while (i >= 0)
-		// {
-		// 	if (w->rooms[i].type != END && w->rooms[i].ants)
-		// 	{
-		// 		room = select_ant_placement(w, i);
-		// 		if (room != -1)
-		// 		{
-		// 			w->rooms[i].ants--;
-		// 			w->rooms[room].ants++;
-		// 			i++;
-		// 		}
-		// 	}
-		// 	i--;
-		// }
-		ft_printf("\n");
-	}
+    moved = 1;
+    while (moved)
+    {
+        moved = 0;
+        i = w->room_count;
+        while (i >= 0)
+        {
+            if (w->rooms[i].type != END && w->rooms[i].ants)
+            {
+                if ((room = select_ant_placement(w, i)) != -1 && (w->rooms[room].ants == 0 || room == w->room_end))
+                {
+                	ant = find_ant(w, i);
+                    w->rooms[i].ants--;
+                    w->rooms[room].ants++;
+                    w->ants[ant].room_index = room;
+                    i++;
+                    moved = 1;
+					ft_printf("L%d-%s ", ant, w->rooms[room].name);
+                }
+            }
+            i--;
+        }
+        if (moved)
+       	 	ft_printf("\n");
+    }
 }

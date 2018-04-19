@@ -29,6 +29,7 @@ int		lemin_gnl(char **line)
 
 	while ((ret = get_next_line(0, line)) > 0)
 	{
+		ft_printf("%s\n", *line);
 		if ((**line == '#' && *(*line + 1) == '#') || **line != '#')
 			return (1);
 		free(*line);

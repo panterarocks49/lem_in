@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 21:21:35 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/19 03:08:49 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/19 05:03:29 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct	s_room
 typedef struct	s_ant
 {
 	int		room_index;
-	int		moved;
 }				t_ant;
 
 typedef struct	s_world
