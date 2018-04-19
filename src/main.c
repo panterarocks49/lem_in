@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 19:27:42 by jbrown            #+#    #+#             */
-/*   Updated: 2018/04/19 03:07:45 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/19 03:15:14 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,9 @@ int		main(void)
 	w.rooms[0].ants = 5;
 
 	w.rooms[1].name = "room 1";
-	w.rooms[1].links[0] = 4;//commenting this out increases the length to room 4, has to take different path
-	w.rooms[1].link_count = 1;//need to adjust to 0 if adjusting lenght ^^
+	w.rooms[1].links[0] = 4;
+	w.rooms[1].link_count = 1;
 	w.rooms[1].type = STANDARD;
-
-	// w.rooms[1].name = "room 1 across";
-	// w.rooms[1].links[0] = 2;
-	// w.rooms[1].link_count = 1;
-	// w.rooms[1].type = STANDARD;
-
-	// w.rooms[1].name = "room 1 looper";
-	// w.rooms[1].links[0] = 0;
-	// w.rooms[1].link_count = 1;
-	// w.rooms[2].type = STANDARD;
 
 	w.rooms[2].name = "room 2";
 	w.rooms[2].links[0] = 3;
@@ -57,9 +47,5 @@ int		main(void)
 	w.rooms[4].type = END;
 
 	place_ants(&w);
-
-	// 0->1 0->2
-	// 1->4 2->3
-	// 3->4
 	return (0);
 }
