@@ -15,7 +15,7 @@ RM = /bin/rm -f
 CFLAGS = -Wall -Wextra -Werror
 
 # lem_in
-FILES = main
+FILES = main util error parse_input parse_rooms parse_links
 MAIN_INC = -I ./include/
 SRC_DIR = ./src/
 CFILES = $(patsubst %, $(SRC_DIR)%.c, $(FILES))
