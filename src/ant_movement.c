@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 01:41:41 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/19 04:41:18 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/19 05:20:57 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int		select_ant_placement(t_world *w, int place_from)
 		room = find_shortest_path_room(w, place_from);
 		// ft_printf("%d\n", room);
 		if (room >= w->room_count)
-			return (room);
-		ft_printf("Move ant from %s to %s\n", w->rooms[place_from].name, w->rooms[room].name);
+			return (-1);
+		ft_printf("L%s-%s ", w->rooms[place_from].name, w->rooms[room].name);
 		return (room);
 	}
 	return (-1);
@@ -47,7 +47,7 @@ void	place_ants(t_world *w)
 	while (moved)
 	{
 		moved = 0;
-		i = w->room_count - 1;
+		i = w->room_count;
 		while (i >= 0)
 		{
 			if (w->rooms[i].type != END && w->rooms[i].ants)
