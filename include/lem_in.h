@@ -56,10 +56,13 @@ typedef struct	s_data
 	int			temp_vertex;
 }				t_data;
 
+//remove
+void			print_world(t_world *world);
+
+void			assert_rooms(t_world *w);
+
 void			parse_input(t_world *world);
 
-int				find_room(t_world *world, char *name);
-char			*parse_name(char *line);
 void			parse_rooms(t_world *world);
 
 void			print_world(t_world *world);
@@ -67,6 +70,7 @@ void			print_world(t_world *world);
 void			parse_links(t_world *world, char *line);
 
 void			*ft_realloc(void *ptr, size_t old_size, size_t new_size);
+int				find_room(t_world *world, char *name);
 int				lemin_gnl(char **line);
 
 void			error(char *str);

@@ -23,6 +23,19 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 	return (new);
 }
 
+int		find_room(t_world *world, char *name)
+{
+	int		i;
+
+	i = -1;
+	while (++i < world->room_count)
+	{
+		if (!ft_strcmp(world->rooms[i].name, name))
+			return (i);
+	}
+	return (-1);
+}
+
 int		lemin_gnl(char **line)
 {
 	int	ret;
@@ -30,7 +43,8 @@ int		lemin_gnl(char **line)
 	while ((ret = get_next_line(0, line)) > 0)
 	{
 		ft_printf("%s\n", *line);
-		if ((**line == '#' && *(*line + 1) == '#') || **line != '#')
+		if (**line != '#' || !ft_strcmp("##start", *line)
+			|| !ft_strcmp("##end", *line))
 			return (1);
 		free(*line);
 	}

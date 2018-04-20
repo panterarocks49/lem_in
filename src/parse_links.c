@@ -27,6 +27,23 @@ static void	link_rooms(t_world *world, int a, int b)
 	world->rooms[a].links = links;
 }
 
+static char	*parse_name(char *line)
+{
+	int		i;
+	int		len;
+	char	*name;
+
+	len = 0;
+	while (line[len] && line[len] != ' ' && line[len] != '-')
+		len++;
+	if (!(name = ft_strnew(len)))
+		error("Malloc Failure ;(");
+	i = -1;
+	while (++i < len)
+		name[i] = line[i];
+	return (name);
+}
+
 static void	add_link(t_world *world, char *line)
 {
 	char	*name;
