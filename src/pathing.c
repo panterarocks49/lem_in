@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 00:49:04 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/20 01:25:26 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/20 02:55:28 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int		find_shortest_path_room(t_world *w, int path_from)
 
 	i = -1;
 	min = 2147483647;
+	best_room = -1;
 	while (++i < w->rooms[path_from].link_count)
 	{
 		if (w->rooms[w->rooms[path_from].links[i]].type != END
