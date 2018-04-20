@@ -12,14 +12,17 @@
 
 NAME = lem-in
 RM = /bin/rm -f
-CFLAGS = -Wall -Wextra -Werror
+
+FLAGS = -Wall -Wextra -Werror
+
 
 # lem_in
 FILES = main util error parse_input parse_rooms parse_links algo pathing ant_movement
-MAIN_INC = -I ./include/
-SRC_DIR = ./src/
+INCLUDE = -I ./include/
+SRC_DIR := ./src/
+OBJ_DIR := ./obj/
 CFILES = $(patsubst %, $(SRC_DIR)%.c, $(FILES))
-OFILES = $(patsubst %, %.o, $(FILES))
+OFILES = $(patsubst %, $(OBJ_DIR)%.o, $(FILES))
 
 # libftprintf lib
 LFT_DIR = ./libftprintf/
@@ -31,26 +34,28 @@ LFT_LINK = -L $(LFT_DIR) -l ftprintf
 
 all: $(LFT_LIB) $(NAME)
 
-$(OFILES):
-	gcc $(CFLAGS) $(MAIN_INC) $(LFT_INC) -c $(CFILES)
-
 $(LFT_LIB):
 	make -C $(LFT_DIR)
 
-$(NAME): $(OFILES)
-	gcc $(CFLAGS) $(OFILES) $(LFT_LINK) -o $(NAME)
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+	@echo [INFO] Lem-in Object Files Directory Created
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	gcc $(FLAGS) $(INCLUDE) $(LFT_INC) -o $@ -c $<
+
+$(NAME): $(OBJ_DIR) $(OFILES)
+	@gcc $(FLAGS) $(OFILES) $(LFT_LINK) -o $(NAME)
+	@echo [INFO] Lem-in Binary Created
 
 clean:
-	@$(RM) $(OFILES)
+	@rm -rf $(OBJ_DIR)
+	@echo [INFO] Lem-in Object Files Directory Destroyed
 	@make -C $(LFT_DIR) clean
 
 fclean: clean
 	@$(RM) $(NAME)
+	@echo [INFO] Lem-in Binary Destroyed
 	@make -C $(LFT_DIR) fclean
 
 re: fclean all
-
-rel:
-	@$(RM) $(NAME)
-	@$(RM) $(OFILES)
-	@make
