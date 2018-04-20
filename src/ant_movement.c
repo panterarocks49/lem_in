@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 01:41:41 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/20 02:59:12 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/20 03:04:22 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	place_ants(t_world *w)
 				if ((room = select_ant_placement(w, i)) != -1 &&
 					(w->rooms[room].ants == 0 || room == w->room_end))
 				{
-					if (get_shortest_path_from(w, i) < get_shortest_path_from(w, room))
+					if (get_shortest_path_from(w, i) < get_shortest_path_from(w, room) || get_shortest_path_from(w, room) < w->rooms[w->room_start].ants)
 						continue ;
 					w->ants[ant].room_index = room;
 					w->rooms[i].ants--;
