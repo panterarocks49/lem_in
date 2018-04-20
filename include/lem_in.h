@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 21:21:35 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/20 00:07:26 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/20 00:11:14 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct	s_world
 typedef struct	s_data
 {
 	int			distance;
-	int			rear;
+	 int			rear;
 	int			queue_item_count;
 	int			unvisited_vertex;
 	int			front;
