@@ -14,18 +14,12 @@
 
 int		select_ant_placement(t_world *w, int place_from)
 {
-	int i;
 	int room;
 
-	i = -1;
-	while (++i < w->rooms[place_from].link_count)
-	{
-		room = find_shortest_path_room(w, place_from);
-		if (room >= w->room_count)
-			return (-1);
-		return (room);
-	}
-	return (-1);
+	room = find_shortest_path_room(w, place_from);
+	if (room >= w->room_count)
+		return (-1);
+	return (room);
 }
 
 int		find_ant(t_world *w, int room)
@@ -66,7 +60,7 @@ void	place_ants(t_world *w)
 					w->ants[ant].room_index = room;
 					i++;
 					moved = 1;
-					ft_printf("L%d-%s ", ant, w->rooms[room].name);
+					ft_printf("L%d-%s ", ant + 1, w->rooms[room].name);
 				}
 			}
 			i--;
