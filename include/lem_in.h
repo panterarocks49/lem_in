@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 21:21:35 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/20 00:11:14 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/20 02:02:39 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct	s_room
 typedef struct	s_ant
 {
 	int			room_index;
+	int			moved;
 }				t_ant;
 
 typedef struct	s_world
@@ -48,7 +49,7 @@ typedef struct	s_world
 typedef struct	s_data
 {
 	int			distance;
-	 int			rear;
+	int			rear;
 	int			queue_item_count;
 	int			unvisited_vertex;
 	int			front;
@@ -60,6 +61,8 @@ void			parse_input(t_world *world);
 int				find_room(t_world *world, char *name);
 char			*parse_name(char *line);
 void			parse_rooms(t_world *world);
+
+void			print_world(t_world *world);
 
 void			parse_links(t_world *world, char *line);
 

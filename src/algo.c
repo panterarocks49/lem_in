@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 21:10:29 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/19 23:59:50 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/20 01:23:33 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,10 @@ int		get_adj_unvisited_vertex(t_world *w, int vertex_index)
 {
 	int i;
 
-	i = 0;
-	while (i < w->rooms[vertex_index].link_count)
-	{
+	i = -1;
+	while (++i < w->rooms[vertex_index].link_count)
 		if (!w->rooms[w->rooms[vertex_index].links[i]].visited)
 			return (w->rooms[vertex_index].links[i]);
-		i++;
-	}
 	return (-1);
 }
 

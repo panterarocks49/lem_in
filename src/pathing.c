@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 00:49:04 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/19 06:23:21 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/20 01:25:26 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ int		find_shortest_path_room(t_world *w, int path_from)
 			min = distance;
 			best_room = w->rooms[path_from].links[i];
 		}
-		if (best_room == -1)
-			return (-1);
 	}
 	return (best_room);
 }

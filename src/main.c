@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 19:27:42 by jbrown            #+#    #+#             */
-/*   Updated: 2018/04/19 04:40:47 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/20 01:06:22 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int		main(void)
 	t_world	w;
 
 	parse_input(&w);
-	set_unvisited(&w);
+	if (get_shortest_path_from(&w, w.room_start) == -1)
+		error("No path.");
 	place_ants(&w);
 	return (0);
 }
