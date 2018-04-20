@@ -12,24 +12,24 @@
 
 #include <lem_in.h>
 
-void	insert(int index, int queue[], int *rear, int *queue_item_count)
+static void	insert(int index, int queue[], int *rear, int *queue_item_count)
 {
 	queue[++(*rear)] = index;
 	(*queue_item_count)++;
 }
 
-int		is_queue_empty(int queue_item_count)
+static int	is_queue_empty(int queue_item_count)
 {
 	return (queue_item_count == 0);
 }
 
-int		remove_data(int *queue_item_count, int queue[], int *front)
+static int	remove_data(int *queue_item_count, int queue[], int *front)
 {
 	(*queue_item_count)--;
 	return (queue[(*front)++]);
 }
 
-int		get_adj_unvisited_vertex(t_world *w, int vertex_index)
+static int	get_adj_unvisited_vertex(t_world *w, int vertex_index)
 {
 	int i;
 
@@ -40,7 +40,7 @@ int		get_adj_unvisited_vertex(t_world *w, int vertex_index)
 	return (-1);
 }
 
-int		bfs_from(t_world *w, int start)
+int			bfs_from(t_world *w, int start)
 {
 	t_data	d;
 	int		queue[w->room_count];

@@ -59,11 +59,14 @@ static char	*parse_room(char *line)
 	while (++i < len)
 	{
 		if (line[i] == '-')
+		{
+			ft_strdel(&name);
 			return (NULL);
+		}
 		name[i] = line[i];
 	}
 	if (!parse_coords(line, i))
-		return (NULL);
+		ft_strdel(&name);
 	return (name);
 }
 
@@ -106,10 +109,7 @@ void		parse_rooms(t_world *world)
 			if (name && find_room(world, name) == -1)
 				add_room(world, name, type);
 			else
-			{
-				ft_strdel(&name);
 				break ;
-			}
 		}
 		type = parse_modifier(line);
 		ft_strdel(&line);
