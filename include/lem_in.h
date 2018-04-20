@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 21:21:35 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/19 23:55:35 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/20 00:07:26 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,38 +21,38 @@
 
 typedef struct	s_room
 {
-	char	*name;
-	int		ants;
-	int		type;
-	int		*links;
-	int		link_count;
-	int		visited;
-	int		distance;
+	char		*name;
+	int			ants;
+	int			type;
+	int			*links;
+	int			link_count;
+	int			visited;
+	int			distance;
 }				t_room;
 
 typedef struct	s_ant
 {
-	int		room_index;
+	int			room_index;
 }				t_ant;
 
 typedef struct	s_world
 {
-	t_room	*rooms;
-	int		room_start;
-	int		room_end;
-	int		room_count;
-	t_ant	*ants;
-	int		ant_count;
+	t_room		*rooms;
+	int			room_start;
+	int			room_end;
+	int			room_count;
+	t_ant		*ants;
+	int			ant_count;
 }				t_world;
 
 typedef struct	s_data
 {
-	int		distance;
-	int 	rear;
-	int		queue_item_count;
-	int		unvisited_vertex;
-	int		front;
-	int		temp_vertex;
+	int			distance;
+	int			rear;
+	int			queue_item_count;
+	int			unvisited_vertex;
+	int			front;
+	int			temp_vertex;
 }				t_data;
 
 void			parse_input(t_world *world);
@@ -68,14 +68,13 @@ int				lemin_gnl(char **line);
 
 void			error(char *str);
 
-
-int		bfs(t_world *w);
-int		bfs_from(t_world *w, int start);
-void	set_unvisited(t_world *w);
-void	init_ants(t_world *w);
-int		get_shortest_path_from(t_world *w, int path_from);
-int		find_shortest_path_room(t_world *w, int path_from);
-int		select_ant_placement(t_world *w, int place_from);
-void	place_ants(t_world *w);
+int				bfs(t_world *w);
+int				bfs_from(t_world *w, int start);
+void			set_unvisited(t_world *w);
+void			init_ants(t_world *w);
+int				get_shortest_path_from(t_world *w, int path_from);
+int				find_shortest_path_room(t_world *w, int path_from);
+int				select_ant_placement(t_world *w, int place_from);
+void			place_ants(t_world *w);
 
 #endif
