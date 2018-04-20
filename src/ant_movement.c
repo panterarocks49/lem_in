@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 01:41:41 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/20 05:19:33 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/20 05:28:17 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,7 @@ int		find_ant(t_world *w, int room)
 	i = -1;
 	while (++i < w->ant_count)
 		if (w->ants[i].room_index == room && !w->ants[i].moved)
-		{
 			return (i);
-		}
 	return (-1);
 }
 
