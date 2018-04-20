@@ -12,7 +12,7 @@
 
 #include <lem_in.h>
 
-void	set_unvisited(t_world *w)
+static void	set_unvisited(t_world *w)
 {
 	int i;
 
@@ -21,13 +21,13 @@ void	set_unvisited(t_world *w)
 		w->rooms[i].visited = 0;
 }
 
-int		get_shortest_path_from(t_world *w, int path_from)
+int			get_shortest_path_from(t_world *w, int path_from)
 {
 	set_unvisited(w);
 	return (bfs_from(w, path_from));
 }
 
-int		find_shortest_path_room(t_world *w, int path_from, int ant)
+int			find_shortest_path_room(t_world *w, int path_from, int ant)
 {
 	int i;
 	int min;
@@ -39,7 +39,8 @@ int		find_shortest_path_room(t_world *w, int path_from, int ant)
 	best_room = -1;
 	while (++i < w->rooms[path_from].link_count)
 	{
-		if (w->rooms[w->rooms[path_from].links[i]].type != END && w->rooms[w->rooms[path_from].links[i]].ants)
+		if (w->rooms[w->rooms[path_from].links[i]].type !=
+			END && w->rooms[w->rooms[path_from].links[i]].ants)
 			continue ;
 		if (w->ants[ant].last_spot == w->rooms[path_from].links[i])
 			continue ;

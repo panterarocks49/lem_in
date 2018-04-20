@@ -57,9 +57,6 @@ typedef struct	s_data
 	int			temp_vertex;
 }				t_data;
 
-//remove
-void			print_world(t_world *world);
-
 void			assert_rooms(t_world *w);
 
 void			parse_input(t_world *world);
@@ -76,13 +73,11 @@ int				lemin_gnl(char **line);
 
 void			error(char *str);
 
-int				bfs(t_world *w);
 int				bfs_from(t_world *w, int start);
-void			set_unvisited(t_world *w);
-void			init_ants(t_world *w);
+
 int				get_shortest_path_from(t_world *w, int path_from);
 int				find_shortest_path_room(t_world *w, int path_from, int ant);
-int				select_ant_placement(t_world *w, int place_from, int ant);
+
 void			place_ants(t_world *w);
 
 #endif
