@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 01:41:41 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/20 03:04:22 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/20 05:19:33 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,21 @@ void	set_ants_unmoved(t_world *w)
 
 	i = -1;
 	while (++i < w->ant_count)
+	{
 		w->ants[i].moved = 0;
+	}
 }
 
-int		select_ant_placement(t_world *w, int place_from)
+int		select_ant_placement(t_world *w, int place_from, int ant)
 {
 	int room;
 
-	room = find_shortest_path_room(w, place_from);
+	room = find_shortest_path_room(w, place_from, ant);
+
 	if (place_from != w->room_start)
+	{
 		return (room);
+	}
 	if (room > -1 &&
 		(get_shortest_path_from(w, place_from) > get_shortest_path_from(w, room)
 			|| get_shortest_path_from(w, room) < w->rooms[w->room_start].ants))
@@ -77,9 +82,10 @@ void	place_ants(t_world *w)
 		{
 			if (w->rooms[i].type != END && w->rooms[i].ants && (ant = find_ant(w, i)) != -1)
 			{
-				if ((room = select_ant_placement(w, i)) != -1 &&
+				if ((room = select_ant_placement(w, i, ant)) != -1 &&
 					(w->rooms[room].ants == 0 || room == w->room_end))
 				{
+					w->ants[ant].last_spot = w->ants[ant].room_index;
 					w->ants[ant].room_index = room;
 					w->rooms[i].ants--;
 					w->rooms[room].ants++;

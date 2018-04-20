@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 22:09:12 by jbrown            #+#    #+#             */
-/*   Updated: 2018/04/20 02:01:45 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/20 05:18:17 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ static void	set_ants(t_world *world)
 
 	i = -1;
 	while (++i < world->ant_count)
+	{
+		world->ants[i].last_spot = -1;
 		world->ants[i].room_index = world->room_start;
+	}
 }
 
 void		parse_input(t_world *world)

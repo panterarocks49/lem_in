@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 21:21:35 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/20 02:58:18 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/20 05:19:17 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct	s_ant
 {
 	int			room_index;
 	int			moved;
+	int			last_spot;
 }				t_ant;
 
 typedef struct	s_world
@@ -80,8 +81,8 @@ int				bfs_from(t_world *w, int start);
 void			set_unvisited(t_world *w);
 void			init_ants(t_world *w);
 int				get_shortest_path_from(t_world *w, int path_from);
-int				find_shortest_path_room(t_world *w, int path_from);
-int				select_ant_placement(t_world *w, int place_from);
+int				find_shortest_path_room(t_world *w, int path_from, int ant);
+int				select_ant_placement(t_world *w, int place_from, int ant);
 void			place_ants(t_world *w);
 
 #endif
