@@ -26,7 +26,14 @@ int		select_ant_placement(t_world *w, int place_from)
 	int room;
 
 	room = find_shortest_path_room(w, place_from);
-	return (room);
+	if (place_from != w->room_start)
+		return (room);
+	if (room > -1 &&
+		(get_shortest_path_from(w, place_from) > get_shortest_path_from(w, room)
+			|| get_shortest_path_from(w, room) < w->rooms[w->room_start].ants))
+
+			return (room);
+	return (-1);
 }
 
 void	print_ants(t_world *w)
@@ -73,8 +80,6 @@ void	place_ants(t_world *w)
 				if ((room = select_ant_placement(w, i)) != -1 &&
 					(w->rooms[room].ants == 0 || room == w->room_end))
 				{
-					if (get_shortest_path_from(w, i) < get_shortest_path_from(w, room) || get_shortest_path_from(w, room) < w->rooms[w->room_start].ants)
-						continue ;
 					w->ants[ant].room_index = room;
 					w->rooms[i].ants--;
 					w->rooms[room].ants++;
