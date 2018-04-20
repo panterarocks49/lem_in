@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 21:21:35 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/19 05:03:29 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/19 23:55:35 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 # define STANDARD 0
 # define START 1
 # define END 2
-// # define SNORLAX 3
-// # define LAVA 4
-# define MAX 1000//temp num, rooms count?
 
 typedef struct	s_room
 {
@@ -47,6 +44,16 @@ typedef struct	s_world
 	t_ant	*ants;
 	int		ant_count;
 }				t_world;
+
+typedef struct	s_data
+{
+	int		distance;
+	int 	rear;
+	int		queue_item_count;
+	int		unvisited_vertex;
+	int		front;
+	int		temp_vertex;
+}				t_data;
 
 void			parse_input(t_world *world);
 

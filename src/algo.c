@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 21:10:29 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/19 06:24:38 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/19 23:59:50 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,28 @@ int		get_adj_unvisited_vertex(t_world *w, int vertex_index)
 
 int		bfs_from(t_world *w, int start)
 {
-	int		distance;
-	int 	rear;
-	int		queue_item_count;
+	t_data	d;
 	int		queue[w->room_count];
-	int		unvisited_vertex;
-	int		front;
-	int		temp_vertex;
 
-	front = 0;
-	rear = -1;
-	queue_item_count = 0;
-	unvisited_vertex = 0;
+	d.front = 0;
+	d.rear = -1;
+	d.queue_item_count = 0;
+	d.unvisited_vertex = 0;
 	w->rooms[start].visited = 1;
 	w->rooms[start].distance = 0;
-	insert(start, queue, &rear, &queue_item_count);
-	while (!is_queue_empty(queue_item_count))
+	insert(start, queue, &d.rear, &d.queue_item_count);
+	while (!is_queue_empty(d.queue_item_count))
 	{
-		temp_vertex = remove_data(&queue_item_count, queue, &front);
-		while ((unvisited_vertex = get_adj_unvisited_vertex(w, temp_vertex)) != -1)
+		d.temp_vertex = remove_data(&d.queue_item_count, queue, &d.front);
+		while ((d.unvisited_vertex =
+			get_adj_unvisited_vertex(w, d.temp_vertex)) != -1)
 		{
-			distance = w->rooms[temp_vertex].distance;
-			insert(unvisited_vertex, queue, &rear, &queue_item_count);
-			w->rooms[unvisited_vertex].visited = 1;
-			if (w->rooms[unvisited_vertex].type == END)
-				return (distance + 1);
-			w->rooms[unvisited_vertex].distance = distance + 1;
+			d.distance = w->rooms[d.temp_vertex].distance;
+			insert(d.unvisited_vertex, queue, &d.rear, &d.queue_item_count);
+			w->rooms[d.unvisited_vertex].visited = 1;
+			if (w->rooms[d.unvisited_vertex].type == END)
+				return (d.distance + 1);
+			w->rooms[d.unvisited_vertex].distance = d.distance + 1;
 		}
 	}
 	return (-1);

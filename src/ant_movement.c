@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 01:41:41 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/19 06:20:21 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/20 00:02:40 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,11 @@ void	place_ants(t_world *w)
 	int room;
 
 	moved = 1;
-	while (moved)
+	while (moved && !((moved = 0)))
 	{
-		moved = 0;
-		i = w->room_count;
-		while (i >= 0)
-		{
+		i = w->room_count + 1;
+		while (--i >= 0)
 			if (w->rooms[i].type != END && w->rooms[i].ants)
-			{
 				if ((room = select_ant_placement(w, i)) != -1 &&
 					(w->rooms[room].ants == 0 || room == w->room_end))
 				{
@@ -62,9 +59,6 @@ void	place_ants(t_world *w)
 					moved = 1;
 					ft_printf("L%d-%s ", ant + 1, w->rooms[room].name);
 				}
-			}
-			i--;
-		}
 		if (moved)
 			ft_printf("\n");
 	}
