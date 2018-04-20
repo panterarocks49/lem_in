@@ -21,34 +21,50 @@ static int	parse_modifier(char *line)
 	return (STANDARD);
 }
 
-char		*parse_name(char *line)
+static int	parse_coords(char *line, int i)
+{
+	if (ft_atoi(line + i) < 0)
+		return (0);
+	while (line[i] == ' ')
+		i++;
+	while (ft_strchr("0123456789", line[i]))
+		i++;
+	if (ft_atoi(line + i) < 0)
+		return (0);
+	while (line[i] == ' ')
+		i++;
+	while (ft_strchr("0123456789", line[i]))
+		i++;
+	while (line[i] == ' ')
+		i++;
+	if (line[i])
+		return (0);
+	return (1);
+}
+
+static char	*parse_room(char *line)
 {
 	int		i;
 	int		len;
 	char	*name;
 
 	len = 0;
-	while (line[len] && line[len] != ' ' && line[len] != '-')
+	if (line[0] == 'L')
+		error("Invalid Name");
+	while (line[len] && line[len] != ' ')
 		len++;
 	if (!(name = ft_strnew(len)))
 		error("Malloc Failure ;(");
 	i = -1;
 	while (++i < len)
-		name[i] = line[i];
-	return (name);
-}
-
-int			find_room(t_world *world, char *name)
-{
-	int		i;
-
-	i = -1;
-	while (++i < world->room_count)
 	{
-		if (!ft_strcmp(world->rooms[i].name, name))
-			return (i);
+		if (line[i] == '-')
+			return (NULL);
+		name[i] = line[i];
 	}
-	return (-1);
+	if (!parse_coords(line, i))
+		return (NULL);
+	return (name);
 }
 
 static void	add_room(t_world *world, char *name, int type)
@@ -86,8 +102,8 @@ void		parse_rooms(t_world *world)
 	{
 		if (*line != '#')
 		{
-			name = parse_name(line);
-			if (find_room(world, name) == -1)
+			name = parse_room(line);
+			if (name && find_room(world, name) == -1)
 				add_room(world, name, type);
 			else
 			{
@@ -98,5 +114,6 @@ void		parse_rooms(t_world *world)
 		type = parse_modifier(line);
 		ft_strdel(&line);
 	}
+	assert_rooms(world);
 	parse_links(world, line);
 }

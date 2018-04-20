@@ -17,7 +17,7 @@ FLAGS = -Wall -Wextra -Werror
 
 
 # lem_in
-FILES = main util error parse_input parse_rooms parse_links algo pathing ant_movement
+FILES = main util error parse_input parse_rooms parse_links algo pathing ant_movement check
 INCLUDE = -I ./include/
 SRC_DIR := ./src/
 OBJ_DIR := ./obj/
